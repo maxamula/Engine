@@ -1,5 +1,7 @@
 #pragma once
 #include "common.h"
+#include "core.h"
+#include "d3dsurface.h"
 #include <windows.h>
 
 #define WND_CLASS L"EngineWindow"
@@ -13,10 +15,10 @@ namespace Renderer
 		WndProcFnPtr callback = NULL;
 		HWND hParent = NULL;
 		wchar_t* szCaption = (wchar_t*)L"Game";
-		uint32_t left = 0;
-		uint32_t top = 0;
-		uint32_t width = 1280;
-		uint32_t height = 720;
+		uint16_t left = 0;
+		uint16_t top = 0;
+		uint16_t width = 1280;
+		uint16_t height = 720;
 	};
 
 	LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam);
@@ -30,12 +32,14 @@ namespace Renderer
 		static void s_ctor(void);
 
 	private:
+		D3DSurface m_surface{};
+
 		HWND m_hWnd = NULL;
 		HWND m_parent = NULL;
 		HINSTANCE m_hInst = NULL;
 		WndProcFnPtr m_callback = NULL;
-		uint32_t m_width = 1280;
-		uint32_t m_height = 720;
+		uint16_t m_width = 1280;
+		uint16_t m_height = 720;
 		std::wstring m_caption = L"Game";
 		RECT m_wndRect{};
 		RECT m_clientRect{};

@@ -6,7 +6,7 @@ namespace Renderer
 	{
 		switch (msg)
 		{
-
+			
 		}
 		Window* This = (Window*)GetWindowLongPtr(hwnd, 0);
 		return This->m_callback ? This->m_callback(hwnd, msg, wparam, lparam) : DefWindowProc(hwnd, msg, wparam, lparam);
@@ -23,6 +23,6 @@ namespace Renderer
 		GetClientRect(m_hWnd, &m_clientRect);
 		SetWindowLongPtr(m_hWnd, GWLP_USERDATA, (LONG_PTR)this);
 		// create rtv && swapchain
-
+		new (&m_surface) D3DSurface(d3ddev, dxgiFactory, d3dcmd.CmdQueue(), &RTVHeap, m_hWnd, m_width, m_height);
 	}
 }

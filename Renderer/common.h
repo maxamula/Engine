@@ -11,6 +11,9 @@
 #include <stdint.h>
 #include <string>
 #include <assert.h>
+#include <wrl/client.h>
 
-#define RELEASE(res) res->Release(); res = NULL;
+using namespace Microsoft::WRL;
+
+#define RELEASE(res) if(res){res->Release(); res = NULL;}
 #define FRAMEBUFFERS_COUNT 3
