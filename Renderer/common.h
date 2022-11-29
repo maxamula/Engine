@@ -7,3 +7,10 @@
 
 #pragma comment(lib, "dxgi.lib")
 #pragma comment(lib, "d3d12.lib")
+
+#include <stdint.h>
+#include <string>
+#include <assert.h>
+
+#define RELEASE(res) res->Release(); res = NULL;
+#define FRAMEBUFFERS_COUNT 3
