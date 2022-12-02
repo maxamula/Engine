@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine", "Engine\Engine.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Managed", "Managed\Managed.vcxproj", "{7A50F9F2-C654-4B22-BFF5-22D2FD7936B6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Editor", "Editor\Editor.csproj", "{55BBDB88-0D85-41CD-895D-B353AC25D4E9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -27,6 +29,9 @@ Global
 		{7A50F9F2-C654-4B22-BFF5-22D2FD7936B6}.Debug|x64.Build.0 = Debug|x64
 		{7A50F9F2-C654-4B22-BFF5-22D2FD7936B6}.Release|x64.ActiveCfg = Release|x64
 		{7A50F9F2-C654-4B22-BFF5-22D2FD7936B6}.Release|x64.Build.0 = Release|x64
+		{55BBDB88-0D85-41CD-895D-B353AC25D4E9}.Debug|x64.ActiveCfg = Debug|x64
+		{55BBDB88-0D85-41CD-895D-B353AC25D4E9}.Debug|x64.Build.0 = Debug|x64
+		{55BBDB88-0D85-41CD-895D-B353AC25D4E9}.Release|x64.ActiveCfg = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
