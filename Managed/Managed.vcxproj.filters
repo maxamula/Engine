@@ -15,7 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="scene.cpp">
+    <ClCompile Include="scene.hpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="window.hpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="core.hpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>

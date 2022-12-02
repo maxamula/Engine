@@ -25,14 +25,14 @@ namespace Renderer
 
 		void ShowWnd() override;
 		void CloseWnd() override;
-		void SetWindowSize(uint32_t width, uint32_t height) override;
+		void SetWindowSize(uint16_t width, uint16_t height) override;
 		void SetWindowCaption(const wchar_t* szCaption) override;
 
-		inline bool IsFullscreen(uint8_t id) const override { return m_bFullscreen; }
-		inline bool IsClosed(uint8_t id) const override { return m_bClosed; }
-		inline uint16_t Width(uint8_t id) const override { return m_width; }
-		inline uint16_t Height(uint8_t id) const override { return m_height; }
-		inline HWND WinId(uint8_t id) const override { return m_hWnd; }
+		inline bool IsFullscreen() const override { return m_bFullscreen; }
+		inline bool IsClosed() const override { return m_bClosed; }
+		inline uint16_t Width() const override { return m_width; }
+		inline uint16_t Height() const override { return m_height; }
+		inline HWND WinId() const override { return m_hWnd; }
 
 	private:
 		D3DSurface m_surface{};

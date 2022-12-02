@@ -18,11 +18,6 @@ namespace CLIEngine
 		Engine::Scene* _impl;		
 	public:
 		Scene(Engine::Scene* impl) : _impl(impl) {};
-		static Scene^ CreateScene()
-		{
-			return gcnew Scene(&Engine::CreateScene());
-		}
-
 
 		GameObject^ CreateObject()
 		{

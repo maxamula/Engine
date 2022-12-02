@@ -24,14 +24,14 @@ namespace Engine
 		virtual void Destroy() = 0;
 		virtual void ShowWnd() = 0;
 		virtual void CloseWnd() = 0;
-		virtual void SetWindowSize(uint32_t width, uint32_t height) = 0;
+		virtual void SetWindowSize(uint16_t width, uint16_t height) = 0;
 		virtual void SetWindowCaption(const wchar_t* szCaption) = 0;
 
-		virtual bool IsFullscreen(uint8_t id) const = 0;
-		virtual bool IsClosed(uint8_t id) const = 0;
-		virtual uint16_t Width(uint8_t id) const = 0;
-		virtual uint16_t Height(uint8_t id) const = 0;
-		virtual HWND WinId(uint8_t id) const = 0;
+		virtual bool IsFullscreen() const = 0;
+		virtual bool IsClosed() const = 0;
+		virtual uint16_t Width() const = 0;
+		virtual uint16_t Height() const = 0;
+		virtual HWND WinId() const = 0;
 	};
 
 	ENGINE_API Window& MakeWindow(HINSTANCE hInst, GFX_WND_DESC& desc);

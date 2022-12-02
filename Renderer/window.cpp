@@ -94,7 +94,7 @@ namespace Renderer
 		::CloseWindow(m_hWnd);
 	}
 
-	void Window::SetWindowSize(uint32_t width, uint32_t height)
+	void Window::SetWindowSize(uint16_t width, uint16_t height)
 	{
 		if (m_dwStyle & WS_CHILD)
 		{

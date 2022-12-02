@@ -70,7 +70,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="scene.cpp" />
+    <ClCompile Include="core.hpp" />
+    <ClCompile Include="scene.hpp" />
+    <ClCompile Include="window.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.vcxproj">
