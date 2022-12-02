@@ -2,34 +2,37 @@
 #include "common.h"
 #include "core.h"
 #include "d3dsurface.h"
+#include <window.h>		// Interface
+#include <common.h>
 #include <windows.h>
 
 #define WND_CLASS L"EngineWindow"
 
-typedef LRESULT(__stdcall* WndProcFnPtr)(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam);
-
 namespace Renderer
 {
-	struct GFX_WND_DESC
-	{
-		WndProcFnPtr callback = NULL;
-		HWND hParent = NULL;
-		wchar_t* szCaption = (wchar_t*)L"Game";
-		uint16_t left = 0;
-		uint16_t top = 0;
-		uint16_t width = 1280;
-		uint16_t height = 720;
-	};
-
 	LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam);
 
-	class Window
+	ENGINE_API class Window : public Engine::Window
 	{
 		friend LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam);
 	public:
 		Window() = delete;
-		Window(HINSTANCE hInst, GFX_WND_DESC& desc);
-		static void s_ctor(void);
+		Window(HINSTANCE hInst, Engine::GFX_WND_DESC& desc);
+		static void Initialize();
+		inline static void Terminate() { UnregisterClass(WND_CLASS, GetModuleHandle(NULL)); }
+
+		inline void Destroy() override { ::DestroyWindow(m_hWnd); }
+
+		void ShowWnd() override;
+		void CloseWnd() override;
+		void SetWindowSize(uint32_t width, uint32_t height) override;
+		void SetWindowCaption(const wchar_t* szCaption) override;
+
+		inline bool IsFullscreen(uint8_t id) const override { return m_bFullscreen; }
+		inline bool IsClosed(uint8_t id) const override { return m_bClosed; }
+		inline uint16_t Width(uint8_t id) const override { return m_width; }
+		inline uint16_t Height(uint8_t id) const override { return m_height; }
+		inline HWND WinId(uint8_t id) const override { return m_hWnd; }
 
 	private:
 		D3DSurface m_surface{};

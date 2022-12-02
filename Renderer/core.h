@@ -14,4 +14,7 @@ namespace Renderer
 	extern D3DDescriptorHeap DSVHeap;
 	extern D3DDescriptorHeap SRVHeap;
 	extern D3DDescriptorHeap UAVHeap;
+
+	void Initialize();
+	void Shutdown();
 }

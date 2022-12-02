@@ -24,6 +24,9 @@
     <ClCompile Include="scene.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="window.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -36,6 +39,12 @@
       <Filter>Файлы заголовков\API</Filter>
     </ClInclude>
     <ClInclude Include="API\common.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="window.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="API\window.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

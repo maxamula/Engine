@@ -1,18 +1,19 @@
 #pragma once
+#include "common.h"
 
 namespace Engine
 {
-	class GameObject
+	ENGINE_API class GameObject
 	{
 	public:
 	};
 
-	class Scene
+	ENGINE_API class Scene
 	{
 	public:
 		virtual GameObject& CreateObject() = 0;
 		virtual void RemoveObject(GameObject& object) = 0;
 	};
 
-	Scene& CreateScene();
+	ENGINE_API Scene& CreateScene();
 }

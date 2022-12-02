@@ -35,6 +35,8 @@ namespace Renderer
 		new (&DSVHeap) D3DDescriptorHeap(d3ddev, D3D12_DESCRIPTOR_HEAP_TYPE_DSV, D3D12_DESCRIPTOR_HEAP_FLAG_NONE, 512);
 		new (&SRVHeap) D3DDescriptorHeap(d3ddev, D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV, D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE, 4096);
 		new (&UAVHeap) D3DDescriptorHeap(d3ddev, D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV, D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE, 512);
+
+		Window::Initialize();
 	}
 
 	void Shutdown()
@@ -47,5 +49,6 @@ namespace Renderer
 		DSVHeap.Release();
 		SRVHeap.Release();
 		UAVHeap.Release();
+		Window::Terminate();
 	}
 }

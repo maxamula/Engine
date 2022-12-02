@@ -52,6 +52,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)Renderer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -70,6 +71,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)Renderer;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -82,6 +84,7 @@
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="scene.cpp" />
+    <ClCompile Include="window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -89,16 +92,27 @@
   <ItemGroup>
     <ClInclude Include="API\common.h" />
     <ClInclude Include="API\scene.h" />
+    <ClInclude Include="API\window.h" />
     <ClInclude Include="scene.h" />
+    <ClInclude Include="window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Renderer\Renderer.vcxproj">
+      <Project>{a1d6a6fb-392f-4719-8b6f-8aeec6a1c28b}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="..\packages\fluid.entt.1.0.8\build\fluid.entt.targets" Condition="Exists('..\packages\fluid.entt.1.0.8\build\fluid.entt.targets')" />
+    <Import Project="..\packages\directxtk12_uwp.2022.10.18.1\build\native\directxtk12_uwp.targets" Condition="Exists('..\packages\directxtk12_uwp.2022.10.18.1\build\native\directxtk12_uwp.targets')" />
+    <Import Project="..\packages\boost.1.80.0\build\boost.targets" Condition="Exists('..\packages\boost.1.80.0\build\boost.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\fluid.entt.1.0.8\build\fluid.entt.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\fluid.entt.1.0.8\build\fluid.entt.targets'))" />
+    <Error Condition="!Exists('..\packages\directxtk12_uwp.2022.10.18.1\build\native\directxtk12_uwp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\directxtk12_uwp.2022.10.18.1\build\native\directxtk12_uwp.targets'))" />
+    <Error Condition="!Exists('..\packages\boost.1.80.0\build\boost.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\boost.1.80.0\build\boost.targets'))" />
   </Target>
 </Project>

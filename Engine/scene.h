@@ -2,11 +2,12 @@
 #include "API/scene.h"
 #include <entt/entt.hpp>
 
+
 namespace Engine
 {
 	class CScene;
 
-	class CGameObject : public GameObject
+	ENGINE_API class CGameObject : public GameObject
 	{
 		friend class CScene;
 	public:
@@ -17,10 +18,10 @@ namespace Engine
 		entt::entity m_handle{0};
 	};
 
-	class CScene : public Scene
+	ENGINE_API class CScene : public Scene
 	{
 	public:
-		CScene() = delete;
+		CScene() = default;
 		inline GameObject& CreateObject() override
 		{
 			CGameObject obj;

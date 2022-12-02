@@ -3,7 +3,7 @@
 namespace CLIEngine
 {
 
-	ref class GameObject
+	public ref class GameObject
 	{
 	internal:
 		Engine::GameObject* _impl;
@@ -18,6 +18,11 @@ namespace CLIEngine
 		Engine::Scene* _impl;		
 	public:
 		Scene(Engine::Scene* impl) : _impl(impl) {};
+		static Scene^ CreateScene()
+		{
+			return gcnew Scene(&Engine::CreateScene());
+		}
+
 
 		GameObject^ CreateObject()
 		{
