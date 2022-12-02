@@ -5,7 +5,7 @@ namespace CLIEngine
 	public ref struct GFX_WND_DESC
 	{
 	public:
-		delegate LRESULT callback(Engine::Window* This, HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam);
+		System::IntPtr callback;
 		System::IntPtr hParent{};
 		System::String^ caption = L"Game";
 		unsigned short left = 0;
@@ -28,10 +28,10 @@ namespace CLIEngine
 		void SetWindowSize(unsigned short width, unsigned short height) { _impl->SetWindowSize(width, height); }
 		void SetWindowCaption(const wchar_t* szCaption) { _impl->SetWindowCaption(szCaption); }
 
-		bool IsFullscreen(uint8_t id) { return _impl->IsFullscreen(); }
-		bool IsClosed(uint8_t id) { return _impl->IsClosed(); }
-		unsigned short Width(uint8_t id) { return _impl->Width(); }
-		unsigned short Height(uint8_t id) { return _impl->Height(); }
-		void* WinId(uint8_t id) { return _impl->WinId(); }
+		bool IsFullscreen() { return _impl->IsFullscreen(); }
+		bool IsClosed() { return _impl->IsClosed(); }
+		unsigned short Width() { return _impl->Width(); }
+		unsigned short Height() { return _impl->Height(); }
+		System::IntPtr WinId() { return System::IntPtr(_impl->WinId()); }
 	};
 }

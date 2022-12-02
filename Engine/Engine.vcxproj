@@ -83,6 +83,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="engine.cpp" />
     <ClCompile Include="scene.cpp" />
     <ClCompile Include="window.cpp" />
   </ItemGroup>
@@ -91,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="API\common.h" />
+    <ClInclude Include="API\engine.h" />
     <ClInclude Include="API\scene.h" />
     <ClInclude Include="API\window.h" />
     <ClInclude Include="scene.h" />
