@@ -194,7 +194,7 @@ namespace Editor.Project
         private string _errorMsg = string.Empty;
         private string _projectName = "New_Project";                                                                                                  // Project name
         private string _projectPath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\Engine\";                                 // Project path
-        private readonly string _templatePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"Roaming\Engine\EngineTemplates\";
+        private readonly string _templatePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Engine\EngineTemplates\";
         private ObservableCollection<ProjectTemplate> _projectTemplates = new ObservableCollection<ProjectTemplate>();
     }
 }

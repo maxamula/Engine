@@ -32,8 +32,7 @@
             </ToggleButton>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="1" x:Name="dialogBody">
-            <!--local:OpenProjectControl/-->
-            <!--local:CreateProjectControl/-->
+            <local:OpenProjectControl/>
             <local:CreateProjectControl/>
         </StackPanel>
     </Grid>

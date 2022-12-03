@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Editor.Project;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,12 +24,8 @@ namespace Editor
         public MainWindow()
         {
             InitializeComponent();
-            Project.Project proj = new Project.Project();
-            proj.AddScene("Default scene");
-            proj.Path = "PATH";
-            proj.Name = "NAME";
-
-            Utils.Serializer.Serialize(proj, @"C:\Users\maxamula\Desktop\project.ahh");
+            ProjectDialog a = new ProjectDialog();
+            a.ShowDialog();
         }
     }
 }
