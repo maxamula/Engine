@@ -14,7 +14,12 @@ using System.Xml.Linq;
 
 namespace Editor.Project
 {
-    [DataContract(Name = "Proj")]
+    public enum BuildConfig
+    {
+        Debug,
+        Release,
+    }
+    [DataContract(Name = "Project")]
     public class Project : VMBase
     {
         // Public
@@ -25,12 +30,13 @@ namespace Editor.Project
 
         //Properties
         [DataMember]
-        public string Name { get; /* TODO private*/ set; }
+        public string Name { get; private set; }
         [DataMember]
-        public string Path { get; /* TODO private*/ set; }
+        public string Path { get; private set; }
         public ReadOnlyObservableCollection<Scene> Scenes { get; private set; }
         public string FullPath { get => $@"{Path}{Name}\{Name}.ahh"; }
         public static Project Current { get => Application.Current.MainWindow.DataContext as Project; }
+        public static BuildConfig Config { get; set; }
 
         private bool _isBuildAvailable = false;
         public bool IsBuildAvailable
@@ -58,6 +64,13 @@ namespace Editor.Project
                 }
             }
         }
+
+        public static string GetConfigName(bool bDll)
+        {
+            string[] exe = { "Debug", "Release" };
+            string[] dll = { "DebugDll", "ReleaseDll" };
+            return bDll ? dll[(int)Config] : exe[(int)Config];
+        }
         public void AddScene(string sceneName)
         {
             Debug.Assert(!string.IsNullOrEmpty(sceneName.Trim()));
@@ -70,7 +83,7 @@ namespace Editor.Project
         }
         public void Unload()
         {
-            // TODO unload visual studio solution
+            Utils.SolutionManager.CloseVS();
         }
         public static Project Load(string file)
         {

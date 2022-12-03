@@ -41,7 +41,7 @@
   </ItemGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="copy /Y &quot;$(SolutionDir)x64\Debug\Engine\Engine.dll&quot; &quot;$(SolutionDir)x64\Editor\x64\Debug\net6.0-windows7.0\Engine.dll&quot;&#xD;&#xA;copy /Y &quot;$(SolutionDir)x64\Debug\Engine\Engine.dll&quot; &quot;$(SolutionDir)x64\Editor\x64\Debug\net6.0-windows7.0\Engine\Engine.dll&quot;&#xD;&#xA;copy /Y &quot;$(SolutionDir)x64\Debug\Engine\Engine.lib&quot; &quot;$(SolutionDir)x64\Editor\x64\Debug\net6.0-windows7.0\Engine\Engine.lib&quot;&#xD;&#xA;xcopy &quot;$(SolutionDir)Engine\API\*.*&quot; &quot;$(SolutionDir)x64\Editor\x64\Debug\net6.0-windows7.0\Engine\API\&quot; /Y /I /E&#xD;&#xA;&#xD;&#xA;" />
+    <Exec Command="copy /Y &quot;$(SolutionDir)x64\Debug\Engine\Engine.dll&quot; &quot;$(SolutionDir)x64\Editor\x64\Debug\net6.0-windows7.0\Engine.dll&quot;&#xD;&#xA;copy /Y &quot;$(SolutionDir)x64\Debug\Engine\Engine.dll&quot; &quot;$(SolutionDir)x64\Editor\x64\Debug\net6.0-windows7.0\Engine\Engine.dll&quot;&#xD;&#xA;copy /Y &quot;$(SolutionDir)x64\Debug\Engine\Engine.lib&quot; &quot;$(SolutionDir)x64\Editor\x64\Debug\net6.0-windows7.0\Engine\Engine.lib&quot;&#xD;&#xA;copy /S /E /Y &quot;$(SolutionDir)Engine\API\*.*&quot; &quot;$(SolutionDir)x64\Editor\x64\Debug\net6.0-windows7.0\Engine\API\&quot;&#xD;&#xA;" />
   </Target>
 
 </Project>

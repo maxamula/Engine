@@ -24,8 +24,42 @@ namespace Editor
         public MainWindow()
         {
             InitializeComponent();
-            ProjectDialog a = new ProjectDialog();
-            a.ShowDialog();
+            Loaded += OnMainWindowLoaded;
+            Closed += OnMainWindowClosed;
+            ShowProjectDialog();
+        }
+
+        private void OnMainWindowClosed(object? sender, EventArgs e)
+        {
+            (this.DataContext as Project.Project).Unload();
+        }
+
+        private void OnMainWindowLoaded(object sender, RoutedEventArgs e)
+        {
+            Loaded -= OnMainWindowLoaded;
+        }
+
+        async private void ShowProjectDialog()
+        {
+            var projectDialog = new ProjectDialog();
+            if (projectDialog.ShowDialog() == false || projectDialog.DataContext == null)
+                Application.Current.Shutdown();         // Shutdown application if user clicked exit btn or error 
+            else
+            {
+                Project.Project.Current?.Unload();          // unload old proj
+                DataContext = projectDialog.DataContext;    // set proj as datacontext
+
+                var project = DataContext as Project.Project;
+                await Task.Run(() =>
+                {
+                    Utils.SolutionManager.Build(project, Project.Project.GetConfigName(true), new Action(() =>
+                    {
+                        // TODO After Building solution load scripts components
+
+                    }));
+                });
+
+            }
         }
     }
 }

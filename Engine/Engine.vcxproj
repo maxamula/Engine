@@ -101,6 +101,7 @@
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="scene.cpp" />
+    <ClCompile Include="script.cpp" />
     <ClCompile Include="window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -110,8 +111,10 @@
     <ClInclude Include="API\common.h" />
     <ClInclude Include="API\engine.h" />
     <ClInclude Include="API\scene.h" />
+    <ClInclude Include="API\script.h" />
     <ClInclude Include="API\window.h" />
     <ClInclude Include="scene.h" />
+    <ClInclude Include="script.h" />
     <ClInclude Include="window.h" />
   </ItemGroup>
   <ItemGroup>

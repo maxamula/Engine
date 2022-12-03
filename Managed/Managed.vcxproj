@@ -78,6 +78,7 @@
   <ItemGroup>
     <ClCompile Include="core.hpp" />
     <ClCompile Include="scene.hpp" />
+    <ClCompile Include="script.hpp" />
     <ClCompile Include="window.hpp" />
   </ItemGroup>
   <ItemGroup>

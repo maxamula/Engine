@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.FileIO;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -38,7 +39,7 @@ namespace Editor.Project
             ProjectTemplates = new ReadOnlyObservableCollection<ProjectTemplate>(_projectTemplates);
             try
             {
-                var templateFiles = Directory.GetFiles(_templatePath, "template.xml", SearchOption.AllDirectories);
+                var templateFiles = Directory.GetFiles(_templatePath, "template.xml", System.IO.SearchOption.AllDirectories);
                 Debug.Assert(templateFiles.Any());
                 foreach (var file in templateFiles)
                 {
@@ -91,6 +92,13 @@ namespace Editor.Project
                 File.WriteAllText(projectPath, projectXml);
 
                 // create vissual studio solution here
+                var project = File.ReadAllText(Path.Combine(template.TemplatePath, "MSVCProject"));
+                project = string.Format(project, ProjectName, "{" + Guid.NewGuid().ToString().ToUpper() + "}");
+                File.WriteAllText(Path.GetFullPath(Path.Combine(path, $"GameCode\\{ProjectName}.vcxproj")), project);
+                // Create folders for engine binaries/includes
+                Directory.CreateDirectory(Path.Combine(path, $"GameCode\\Engine"));
+                Directory.CreateDirectory(Path.Combine(path, $"GameCode\\Engine\\API"));
+                FileSystem.CopyDirectory("Engine", Path.Combine(path, $"GameCode\\Engine"));
 
                 return path;
             }

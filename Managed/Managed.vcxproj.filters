@@ -24,5 +24,8 @@
     <ClCompile Include="core.hpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="script.hpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
