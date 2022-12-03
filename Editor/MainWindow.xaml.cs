@@ -19,7 +19,7 @@ namespace Editor
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : HandyControl.Controls.Window
     {
         public MainWindow()
         {
@@ -31,7 +31,7 @@ namespace Editor
 
         private void OnMainWindowClosed(object? sender, EventArgs e)
         {
-            (this.DataContext as Project.Project).Unload();
+            (this.DataContext as Project.Project)?.Unload();
         }
 
         private void OnMainWindowLoaded(object sender, RoutedEventArgs e)

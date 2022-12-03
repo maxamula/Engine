@@ -1,12 +1,47 @@
-﻿<Window x:Class="Editor.MainWindow"
+﻿<hc:Window x:Class="Editor.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Editor"
+        xmlns:editor="clr-namespace:Editor.LevelEditor"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <hc:Window.NonClientAreaContent>
+        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Menu Grid.Column="0"  Margin="20 0 0 0">
+                <MenuItem Header="File">
+                    <MenuItem Header="Save"/>
+                </MenuItem>
+                <MenuItem Header="Project">
+                    <MenuItem Header="Add Scene"/>
+                </MenuItem>
+                <MenuItem Header="Create script"/>
 
+            </Menu>
+            <ComboBox x:Name="configBox" Grid.Column="2" Width="100" Margin="0 0 10 0" SelectedIndex="{Binding Config}" HorizontalAlignment="Right">
+                <ComboBoxItem Content="Debug" IsSelected="True"/>
+                <ComboBoxItem Content="Release"/>
+            </ComboBox>
+        </Grid>
+    </hc:Window.NonClientAreaContent>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50px"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="200" MaxWidth="350" Width="*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition MinWidth="200" MaxWidth="350" Width="*"/>
+        </Grid.ColumnDefinitions>
+        <editor:Viewport Grid.Row="1" Grid.Column="1" Grid.RowSpan="2"/>
     </Grid>
-</Window>
+</hc:Window>
