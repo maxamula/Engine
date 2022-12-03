@@ -13,5 +13,16 @@ namespace Editor
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            CLIEngine.Core.Initialize();
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            CLIEngine.Core.Shutdown();
+            base.OnExit(e);
+        }
     }
 }

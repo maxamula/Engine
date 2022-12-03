@@ -23,6 +23,12 @@ namespace Editor
         public MainWindow()
         {
             InitializeComponent();
+            Project.Project proj = new Project.Project();
+            proj.AddScene("Default scene");
+            proj.Path = "PATH";
+            proj.Name = "NAME";
+
+            Utils.Serializer.Serialize(proj, @"C:\Users\maxamula\Desktop\project.ahh");
         }
     }
 }
