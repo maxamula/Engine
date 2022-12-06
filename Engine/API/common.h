@@ -1,6 +1,7 @@
 #pragma once
 #include <stdint.h>
 #include <windows.h>
+#include <string>
 
 
 #ifdef _ENGINE
@@ -10,7 +11,7 @@
 #endif
 
 #ifdef GCDLL
-#define REGISTER_SCRIPT(TYPE) class TYPE; namespace { const uint8_t _reg##TYPE{Engine::Script::RegisterScript(std::hash<std::string>()(#TYPE), &Engine::ECS::Components::CreateScript<TYPE>)}; const uint8_t _name_##TYPE {Engine::Script::RegisterScriptName(#TYPE)};}
+#define REGISTER_SCRIPT(TYPE) class TYPE; namespace { const uint8_t _reg##TYPE{Engine::Script::RegisterScript(std::hash<std::string>()(#TYPE), &Engine::Script::CreateScript<TYPE>)}; const uint8_t _name_##TYPE {Engine::Script::RegisterScriptName(#TYPE)};}
 #else
-#define REGISTER_SCRIPT(TYPE) class TYPE; namespace { const uint8_t _reg##TYPE{Engine::Script::RegisterScript(std::hash<std::string>()(#TYPE), &Engine::ECS::Components::CreateScript<TYPE>)};}
+#define REGISTER_SCRIPT(TYPE) class TYPE; namespace { const uint8_t _reg##TYPE{Engine::Script::RegisterScript(std::hash<std::string>()(#TYPE), &Engine::Script::CreateScript<TYPE>)};}
 #endif

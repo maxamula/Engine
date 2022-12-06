@@ -1,6 +1,7 @@
 #pragma once
 #include "scene.h"
 #include "window.h"
+#include "script.h"
 
 #define ENGINE_INITIALIZER
 

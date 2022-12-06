@@ -7,7 +7,8 @@
         xmlns:local="clr-namespace:Editor"
         xmlns:editor="clr-namespace:Editor.LevelEditor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Background="GhostWhite"
+        Title="MainWindow" Height="720" Width="1280">
     <hc:Window.NonClientAreaContent>
         <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <Grid.ColumnDefinitions>
@@ -38,10 +39,15 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition MinWidth="200" MaxWidth="350" Width="*"/>
+            <ColumnDefinition MinWidth="300" MaxWidth="450" Width="*"/>
             <ColumnDefinition Width="3*"/>
-            <ColumnDefinition MinWidth="200" MaxWidth="350" Width="*"/>
+            <ColumnDefinition MinWidth="300" MaxWidth="450" Width="*"/>
         </Grid.ColumnDefinitions>
+        <GridSplitter Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Width="2" ShowsPreview="True" VerticalAlignment="Stretch" HorizontalAlignment="Right" Background="#DFE6E9"/>
+        <GridSplitter Grid.Column="2" Grid.Row="0" Grid.RowSpan="3" Width="2" ShowsPreview="True" VerticalAlignment="Stretch" HorizontalAlignment="Left" Background="#DFE6E9"/>
+        <ToolBar Grid.Row="0" Grid.Column="1" Margin="0 5 0 5">
+            
+        </ToolBar>
         <editor:Viewport Grid.Row="1" Grid.Column="1" Grid.RowSpan="2"/>
     </Grid>
 </hc:Window>

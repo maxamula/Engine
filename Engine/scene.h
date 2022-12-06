@@ -11,15 +11,18 @@ namespace Engine
 	{
 		friend class CScene;
 	public:
-
+		void AddScriptComponent(Script::ScriptCreator creator) override;
+		Script::c_Script& GetScriptComponent() override;
+		void RemoveScriptComponent() override;
 	private:
 		CGameObject() = default;
-		Scene* m_pScene = NULL;
+		CScene* m_pScene = NULL;
 		entt::entity m_handle{0};
 	};
 
 	ENGINE_API class CScene : public Scene
 	{
+		friend class CGameObject;
 	public:
 		CScene() = default;
 		inline GameObject& CreateObject() override
@@ -35,15 +38,15 @@ namespace Engine
 		}
 	private:
 		template <class T>
-		void _AddComponent(entt::entity objId, T& component) { m_reg.emplace_or_replace<T>(objId, component); }
+		constexpr void _AddComponent(entt::entity objId, T& component) { m_reg.emplace_or_replace<T>(objId, component); }
 		template <class T>
-		void _AddComponent(entt::entity objId, T&& component) { m_reg.emplace_or_replace<T>(objId, component); }
+		constexpr void _AddComponent(entt::entity objId, T&& component) { m_reg.emplace_or_replace<T>(objId, component); }
 		template <class T>
-		void _RemoveComponent(entt::entity objId) { m_reg.remove<T>(objId); }
+		constexpr void _RemoveComponent(entt::entity objId) { m_reg.remove<T>(objId); }
 		template <class T>
 		T& _GetComponent(entt::entity objId) { return m_reg.get<T>(objId); }
 		template <class T>
-		bool _HasComponent(entt::entity objId) { return m_reg.try_get<T>(objId) ? true : false; }
+		constexpr bool _HasComponent(entt::entity objId) { return m_reg.try_get<T>(objId) ? true : false; }
 
 		entt::registry m_reg{};
 	};
