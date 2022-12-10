@@ -2,7 +2,9 @@
 
 namespace Engine::Script
 {
-	HMODULE hGCDll;
+	HMODULE hGCDll = NULL;
+	fnEntry pInitializer = NULL;
+
 
 	inline std::vector<std::string>& ScriptNames()
 	{
@@ -50,6 +52,11 @@ namespace Engine::Script
 		auto creator = ScriptCreators().find(handle);
 		assert(creator != ScriptCreators().end() && creator->first == handle);
 		return creator->second;
+	}
+	uint8_t SetInitializer(void* pFunc)
+	{
+		pInitializer = (fnEntry)pFunc;
+		return 0;
 	}
 	// Hidden
 	/*ENGINE_API LPSAFEARRAY GetScriptNames()
