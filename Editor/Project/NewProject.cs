@@ -1,5 +1,4 @@
-﻿using Editor.Utils;
-using Microsoft.VisualBasic.FileIO;
+﻿using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -93,13 +92,6 @@ namespace Editor.Project
                 File.WriteAllText(projectPath, projectXml);
 
                 // create vissual studio solution here
-                Debug.Assert(File.Exists(Path.Combine(template.TemplatePath, "MSVCSolution")));
-                Debug.Assert(File.Exists(Path.Combine(template.TemplatePath, "MSVCProject")));
-
-                var solution = File.ReadAllText(Path.Combine(template.TemplatePath, "MSVCSolution"));
-                solution = string.Format(solution, ProjectName, "{" + Guid.NewGuid().ToString().ToUpper() + "}", "{" + Guid.NewGuid().ToString().ToUpper() + "}");
-                File.WriteAllText(Path.GetFullPath(Path.Combine(path, $"{ProjectName}.sln")), solution);
-
                 var project = File.ReadAllText(Path.Combine(template.TemplatePath, "MSVCProject"));
                 project = string.Format(project, ProjectName, "{" + Guid.NewGuid().ToString().ToUpper() + "}");
                 File.WriteAllText(Path.GetFullPath(Path.Combine(path, $"GameCode\\{ProjectName}.vcxproj")), project);
@@ -107,11 +99,6 @@ namespace Editor.Project
                 Directory.CreateDirectory(Path.Combine(path, $"GameCode\\Engine"));
                 Directory.CreateDirectory(Path.Combine(path, $"GameCode\\Engine\\API"));
                 FileSystem.CopyDirectory("Engine", Path.Combine(path, $"GameCode\\Engine"));
-                var initializer = File.ReadAllText(Path.Combine(template.TemplatePath, "Init"));
-                initializer = string.Format(initializer, ProjectName);
-                File.WriteAllText(Path.GetFullPath(Path.Combine(path, $"GameCode\\{ProjectName}.cpp")), initializer);
-                string[] files = { Path.GetFullPath(Path.Combine(path, $"GameCode\\{ProjectName}.cpp")) };
-                SolutionManager.AddFiles(Path.GetFullPath(Path.Combine(path, $"{ProjectName}.sln")), ProjectName, files);
 
                 return path;
             }

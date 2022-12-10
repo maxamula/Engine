@@ -7,8 +7,5 @@
 
 namespace Engine::Script
 {
-	typedef void(*fnEntry)(HINSTANCE hInst, DWORD dwReason);
-	extern HMODULE hGCDll;
-	extern fnEntry pInitializer;
 	ScriptCreator GetScriptCreator(uint64_t handle);
 }
