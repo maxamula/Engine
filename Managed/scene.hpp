@@ -9,6 +9,14 @@ namespace CLIEngine
 		Engine::GameObject* _impl;
 	public:
 		GameObject(Engine::GameObject* impl) : _impl(impl) {};
+		GameObject^ AddChild()
+		{
+			return gcnew GameObject(&_impl->AddChild());
+		}
+		void RemoveChild(GameObject^ object)
+		{
+			_impl->RemoveChild(*object->_impl);
+		}
 	};
 
 
@@ -18,15 +26,14 @@ namespace CLIEngine
 		Engine::Scene* _impl;		
 	public:
 		Scene(Engine::Scene* impl) : _impl(impl) {};
-
-		GameObject^ CreateObject()
+		GameObject^ AddChild()
 		{
-			return gcnew GameObject(&_impl->CreateObject());
+			return gcnew GameObject(&_impl->AddChild());
 		}
 
-		void RemoveObject(GameObject^ object)
+		void RemoveChild(GameObject^ object)
 		{
-			_impl->RemoveObject(*object->_impl);
+			_impl->RemoveChild(*object->_impl);
 		}
 	};
 }

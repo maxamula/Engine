@@ -15,5 +15,7 @@
 
 using namespace Microsoft::WRL;
 
+#define MOVE(a) a; a = {}; 
+
 #define RELEASE(res) if(res){res->Release(); res = NULL;}
 #define FRAMEBUFFERS_COUNT 3

@@ -16,13 +16,16 @@ using System.Windows.Shapes;
 namespace Editor.LevelEditor
 {
     /// <summary>
-    /// Логика взаимодействия для WorldEditorControl.xaml
+    /// Логика взаимодействия для ComponentsView.xaml
     /// </summary>
-    public partial class WorldEditorControl : UserControl
+    public partial class ComponentsView : UserControl
     {
-        public WorldEditorControl()
+        public static ComponentsView Instance { get; private set; }
+        public ComponentsView()
         {
             InitializeComponent();
+            DataContext = null;
+            Instance = this;
         }
     }
 }

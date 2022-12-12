@@ -1,24 +1,65 @@
-﻿using System;
+﻿using Editor.Project;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Markup;
 
 namespace Editor.ECS
 {
     [DataContract]
-    public class GameObject : VMBase
+    public class GameObject : GOParent
     {
-        public GameObject()
+        public GameObject(string name)
         {
+            Name = name;
             Components = new ReadOnlyObservableCollection<Component>(_components);
+            Children = new ReadOnlyObservableCollection<GameObject>(_children);
         }
-        public ReadOnlyObservableCollection<Component> Components; 
-
+        public override GameObject AddChild(string name)
+        {
+            ECS.GameObject obj = new ECS.GameObject(name);
+            obj.Parent = this;
+            obj.ParentScene = ParentScene;
+            obj._GameObject = _GameObject.AddChild();
+            _children.Add(obj);
+            return obj;
+        }
+        public override void RemoveChild(GameObject obj)
+        {
+            Debug.Assert(obj != this);
+            _children.Remove(obj);
+            _GameObject.RemoveChild(obj._GameObject);
+        }
+        public CLIEngine.GameObject _GameObject;
+        public ReadOnlyObservableCollection<Component> Components { get; private set; } 
+        public ReadOnlyObservableCollection<GameObject> Children { get; private set; }
+        [DataMember]
+        public GameObject Parent { get; private set; }
+        [DataMember]
+        public Scene ParentScene { get; set; }
+        [DataMember]
+        public string Name
+        {
+            get => _name;
+            set
+            {
+                if(_name != value)
+                {
+                    _name = value;
+                    OnPropertyChanged(nameof(Name));
+                }
+            }
+        }
 
         [DataMember]
         private ObservableCollection<Component> _components = new ObservableCollection<Component>();
+        [DataMember]
+        private ObservableCollection<GameObject> _children = new ObservableCollection<GameObject>();
+        private string _name = "Game_object";
     }
 }

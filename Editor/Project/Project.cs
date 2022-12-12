@@ -10,6 +10,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 using System.Xml.Linq;
 
 namespace Editor.Project
@@ -35,8 +36,22 @@ namespace Editor.Project
         public string Path { get; private set; }
         public ReadOnlyObservableCollection<Scene> Scenes { get; private set; }
         public string FullPath { get => $@"{Path}{Name}\{Name}.ahh"; }
-        public static Project Current { get => Application.Current.MainWindow.DataContext as Project; }
-        public static BuildConfig Config { get; set; }
+        public static Project Current 
+        { 
+            get => Application.Current.MainWindow.DataContext as Project;
+        }
+        public BuildConfig Config
+        {
+            get => _config;
+            set
+            {
+                if(_config != value)
+                {
+                    _config = value;
+                    OnPropertyChanged(nameof(Config));
+                }
+            }
+        }
 
         private bool _isBuildAvailable = false;
         public bool IsBuildAvailable
@@ -65,7 +80,7 @@ namespace Editor.Project
             }
         }
 
-        public static string GetConfigName(bool bDll)
+        public string GetConfigName(bool bDll)
         {
             string[] exe = { "Debug", "Release" };
             string[] dll = { "DebugDll", "ReleaseDll" };
@@ -109,6 +124,8 @@ namespace Editor.Project
         }
 
         [DataMember(Name = "Scenes")]
-        ObservableCollection<Scene> _scenes = new ObservableCollection<Scene>();
+        private ObservableCollection<Scene> _scenes = new ObservableCollection<Scene>();
+        [DataMember(Name = "Build_config")]
+        private BuildConfig _config = BuildConfig.Debug;
     }
 }

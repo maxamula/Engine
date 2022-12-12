@@ -52,7 +52,7 @@ namespace Editor
                 var project = DataContext as Project.Project;
                 await Task.Run(() =>
                 {
-                    Utils.SolutionManager.Build(project, Project.Project.GetConfigName(true), new Action(() =>
+                    Utils.SolutionManager.Build(project, project.GetConfigName(true), new Action(() =>
                     {
                         // TODO After Building solution load scripts components
 

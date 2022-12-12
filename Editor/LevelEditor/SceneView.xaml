@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="Editor.LevelEditor.SceneView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Editor.LevelEditor"
+             xmlns:ecs="clr-namespace:Editor.ECS"
+             xmlns:proj="clr-namespace:Editor.Project"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=proj:Project, IsDesignTimeCreatable=True}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="WhiteSmoke">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border BorderBrush="#DFE6E9" BorderThickness="0">
+            <StackPanel Orientation="Horizontal" Grid.Row="0" >
+                <Button Width="20" Height="20" Content="+" Padding="0" Margin="2 0 2 0" Click="OnAddChildClick"/>
+                <Button Width="20" Height="20" Content="-" Padding="0" Margin="2 0 2 0" Click="OnRemoveChildClick"/>
+                <Button Width="20" Height="20" Content="?" IsEnabled="False" Padding="0" Margin="18 0 2 0"/>
+                <TextBlock Text="{Binding Name}"/>
+            </StackPanel>
+        </Border>
+        <ScrollViewer Grid.Row="1" Background="#fbf9fd" BorderBrush="Black" BorderThickness="2">
+            <ScrollViewer.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </ScrollViewer.Resources>
+            <TreeView x:Name="tree" Style="{StaticResource TreeView.Small}" ItemsSource="{Binding Scenes}" SelectedItemChanged="OnObjectSelectionChanged">
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource = "{Binding Path=GameObjects}">
+                        <TextBlock Text="{Binding Path=Name}"/>
+                        <HierarchicalDataTemplate.ItemTemplate>
+                            <HierarchicalDataTemplate ItemsSource="{Binding Path=Children}">
+                                <TextBlock Text="{Binding Name}"/>
+                            </HierarchicalDataTemplate>
+                        </HierarchicalDataTemplate.ItemTemplate>
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

@@ -16,6 +16,7 @@
     <ClInclude Include="d3dcmd.h" />
     <ClInclude Include="d3ddescheap.h" />
     <ClInclude Include="d3dsurface.h" />
+    <ClInclude Include="d3dtexture.h" />
     <ClInclude Include="window.h" />
   </ItemGroup>
   <ItemGroup>
@@ -23,6 +24,7 @@
     <ClCompile Include="d3dcmd.cpp" />
     <ClCompile Include="d3ddescheap.cpp" />
     <ClCompile Include="d3dsurface.cpp" />
+    <ClCompile Include="d3dtexture.cpp" />
     <ClCompile Include="window.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -11,13 +11,18 @@ namespace Engine
 	{
 		friend class CScene;
 	public:
+		CGameObject() = default;
 		void AddScriptComponent(Script::ScriptCreator creator) override;
 		Script::c_Script& GetScriptComponent() override;
 		void RemoveScriptComponent() override;
+		GameObject& AddChild() override;
+		void RemoveChild(GameObject& object) override;
+		bool operator==(GameObject& other) override;
+		bool operator==(const CGameObject other);
 	private:
-		CGameObject() = default;
 		CScene* m_pScene = NULL;
 		entt::entity m_handle{0};
+		std::vector<CGameObject> m_objects;
 	};
 
 	ENGINE_API class CScene : public Scene
@@ -25,17 +30,9 @@ namespace Engine
 		friend class CGameObject;
 	public:
 		CScene() = default;
-		inline GameObject& CreateObject() override
-		{
-			CGameObject obj;
-			obj.m_handle = m_reg.create();
-			obj.m_pScene = this;
-			return obj;
-		}
-		inline void RemoveObject(GameObject& object) override
-		{
-			m_reg.destroy(reinterpret_cast<CGameObject&>(object).m_handle);
-		}
+		GameObject& AddChild() override;
+		void RemoveChild(GameObject& object) override;
+		
 	private:
 		template <class T>
 		constexpr void _AddComponent(entt::entity objId, T& component) { m_reg.emplace_or_replace<T>(objId, component); }
@@ -49,5 +46,6 @@ namespace Engine
 		constexpr bool _HasComponent(entt::entity objId) { return m_reg.try_get<T>(objId) ? true : false; }
 
 		entt::registry m_reg{};
+		std::vector<CGameObject> m_objects;
 	};
 }
