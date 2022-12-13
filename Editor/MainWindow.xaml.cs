@@ -61,5 +61,10 @@ namespace Editor
 
             }
         }
+
+        private void OnSaveClick(object sender, EventArgs e)
+        {
+            Project.Project.Save(Project.Project.Current);
+        }
     }
 }

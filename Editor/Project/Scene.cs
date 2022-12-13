@@ -10,6 +10,7 @@ using System.Runtime.Serialization;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Editor.Project
 {
@@ -54,8 +55,13 @@ namespace Editor.Project
         [OnDeserialized]
         private void OnDeserialized(StreamingContext context)
         {
-            _Scene = CLIEngine.Core.CreateScene();
             GameObjects = new ReadOnlyObservableCollection<ECS.GameObject>(_gameObjects);
+            _Scene = CLIEngine.Core.CreateScene();
+            foreach (var obj in _gameObjects)
+            {
+                obj._GameObject = _Scene.AddChild();
+                obj.AddChildrenRecursive();
+            }
         }
         private string _name;
         [DataMember]
