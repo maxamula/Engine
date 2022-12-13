@@ -70,7 +70,6 @@ namespace Editor.ECS
         {
             Components = new ReadOnlyObservableCollection<Component>(_components);
             Children = new ReadOnlyObservableCollection<GameObject>(_children);
-            _components.Add(new Script(this));
         }
         [DataMember]
         private ObservableCollection<Component> _components = new ObservableCollection<Component>();

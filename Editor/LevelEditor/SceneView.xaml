@@ -9,6 +9,21 @@
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=proj:Project, IsDesignTimeCreatable=True}"
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Geometry x:Key="dot_circle_smallGeometry">F1 M24,24z M0,0z M12,19A7,7,0,1,1,19,12A7.008,7.008,0,0,1,12,19z</Geometry>
+            <DrawingGroup x:Key="dot_circle_smallDrawingGroup" ClipGeometry="M0,0 V24 H24 V0 H0 Z">
+                <GeometryDrawing Brush="#FF000000" Geometry="{StaticResource dot_circle_smallGeometry}" />
+            </DrawingGroup>
+        <DrawingGroup x:Key="dot_red_circle_smallDrawingGroup" ClipGeometry="M0,0 V24 H24 V0 H0 Z">
+            <GeometryDrawing Brush="#FFFF0000" Geometry="{StaticResource dot_circle_smallGeometry}" />
+        </DrawingGroup>
+        <DrawingGroup x:Key="dot_blue_circle_smallDrawingGroup" ClipGeometry="M0,0 V24 H24 V0 H0 Z">
+            <GeometryDrawing Brush="#FF00A0FF" Geometry="{StaticResource dot_circle_smallGeometry}" />
+        </DrawingGroup>
+        <DrawingImage x:Key="dot" Drawing="{StaticResource dot_circle_smallDrawingGroup}" />
+        <DrawingImage x:Key="dot_red" Drawing="{StaticResource dot_red_circle_smallDrawingGroup}" />
+        <DrawingImage x:Key="dot_blue" Drawing="{StaticResource dot_blue_circle_smallDrawingGroup}" />
+    </UserControl.Resources>
     <Grid Background="WhiteSmoke">
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
@@ -18,7 +33,7 @@
             <StackPanel Orientation="Horizontal" Grid.Row="0" >
                 <Button Width="20" Height="20" Content="+" Padding="0" Margin="2 0 2 0" Click="OnAddChildClick"/>
                 <Button Width="20" Height="20" Content="-" Padding="0" Margin="2 0 2 0" Click="OnRemoveChildClick"/>
-                <Button Width="20" Height="20" Content="?" IsEnabled="False" Padding="0" Margin="18 0 2 0"/>
+                <Button Width="20" Height="20" Content="" IsEnabled="False" Padding="0" Margin="18 0 2 0"/>
                 <TextBlock Text="{Binding Name}"/>
             </StackPanel>
         </Border>
@@ -31,7 +46,10 @@
             <TreeView x:Name="tree" Style="{StaticResource TreeView.Small}" ItemsSource="{Binding Scenes}" SelectedItemChanged="OnObjectSelectionChanged">
                 <TreeView.ItemTemplate>
                     <HierarchicalDataTemplate ItemsSource = "{Binding Path=GameObjects}">
-                        <TextBlock Text="{Binding Path=Name}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="10" Margin="0 0 5 0" Source="{StaticResource dot_red}"/>
+                            <TextBlock Text="{Binding Path=Name}"/>
+                        </StackPanel>
                         <HierarchicalDataTemplate.ItemTemplate>
                             <HierarchicalDataTemplate ItemsSource="{Binding Path=Children}">
                                 <TextBlock Text="{Binding Name}"/>
