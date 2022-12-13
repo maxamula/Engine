@@ -4,8 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Editor.LevelEditor"
+             xmlns:ecs="clr-namespace:Editor.ECS"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type ecs:Script}">
+            <local:ScriptView/>
+        </DataTemplate>
+    </UserControl.Resources>
     <GroupBox Style="{StaticResource GroupBoxTab.Small}">
         <GroupBox.Header>
             <Grid>

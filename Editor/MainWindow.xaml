@@ -20,9 +20,6 @@
                 <MenuItem Header="File">
                     <MenuItem Header="Save" Click="OnSaveClick"/>
                 </MenuItem>
-                <MenuItem Header="Project">
-                    <MenuItem Header="Add Scene"/>
-                </MenuItem>
                 <MenuItem Header="Create script"/>
 
             </Menu>

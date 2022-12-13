@@ -38,6 +38,19 @@ namespace Editor.Project
             _Scene.RemoveChild(obj._GameObject);
         }
         [DataMember]
+        public Project Project
+        {
+            get => _project;
+            set
+            {
+                if (_project != value)
+                {
+                    _project = value;
+                    OnPropertyChanged(nameof(Project));
+                }
+            }
+        }
+        [DataMember]
         public string Name 
         {
             get => _name;
@@ -66,5 +79,6 @@ namespace Editor.Project
         private string _name;
         [DataMember]
         private ObservableCollection<ECS.GameObject> _gameObjects = new ObservableCollection<ECS.GameObject>();
+        private Project _project;
     }
 }

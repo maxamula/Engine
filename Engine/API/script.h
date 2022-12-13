@@ -2,6 +2,7 @@
 #include "common.h"
 //#include "scene.h"
 #include <memory>
+#include <vector>
 #include <assert.h>
 
 namespace Engine
@@ -19,8 +20,7 @@ namespace Engine
 			{}
 			virtual void __fastcall Begin() = 0;
 			virtual void __fastcall Update(float fElapsedTime) = 0;
-		protected:
-			
+		protected:	
 			GameObject& m_object;
 		};
 
@@ -43,5 +43,6 @@ namespace Engine
 		ENGINE_API bool UnloadGCDLL();
 		ENGINE_API uint8_t RegisterScript(uint64_t handle, ScriptCreator creator);
 		ENGINE_API uint8_t RegisterScriptName(const char* name);
+		ENGINE_API std::vector<std::string>& ScriptNames();
 	}
 }

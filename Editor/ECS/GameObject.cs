@@ -13,6 +13,7 @@ using System.Windows.Markup;
 namespace Editor.ECS
 {
     [DataContract]
+    [KnownType(typeof(Script))]
     public class GameObject : GOParent
     {
         public GameObject(string name)
@@ -69,6 +70,7 @@ namespace Editor.ECS
         {
             Components = new ReadOnlyObservableCollection<Component>(_components);
             Children = new ReadOnlyObservableCollection<GameObject>(_children);
+            _components.Add(new Script(this));
         }
         [DataMember]
         private ObservableCollection<Component> _components = new ObservableCollection<Component>();

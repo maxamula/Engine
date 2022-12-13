@@ -26,6 +26,9 @@ namespace Editor
             InitializeComponent();
             Loaded += OnMainWindowLoaded;
             Closed += OnMainWindowClosed;
+            /*Project.Project p = new Project.Project();
+            p.AddScene("Default scene");
+            Utils.Serializer.Serialize(p, @"C:\Users\maxamula\Desktop\project.txt");*/
             ShowProjectDialog();
         }
 

@@ -52,19 +52,6 @@ namespace Engine::Script
 		return creator->second;
 	}
 	// Hidden
-	/*ENGINE_API LPSAFEARRAY GetScriptNames()
-	{
-		if (ScriptNames().size() != 0)
-		{
-			CComSafeArray<BSTR> names(ScriptNames().size());
-			for (uint32_t i = 0; i < ScriptNames().size(); i++)
-			{
-				names.SetAt(i, A2BSTR_EX(ScriptNames()[i].c_str()), false);
-			}
-			return names.Detach();
-		}
-		return NULL;
-	}*/
 
 	//ScriptCreator byname(const char* name)
 	//{

@@ -11,6 +11,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Icons\cpp.png" />
+    <None Remove="Resources\Icons\script.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <COMReference Include="EnvDTE80">
       <WrapperTool>tlbimp</WrapperTool>
       <VersionMinor>0</VersionMinor>
@@ -38,6 +43,17 @@
   <ItemGroup>
     <PackageReference Include="HandyControls" Version="3.4.4" />
     <PackageReference Include="System.Runtime.InteropServices" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Icons\script.png" />
+    <Resource Include="Resources\Icons\cpp.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Resources\Icons\cpp.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">

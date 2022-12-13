@@ -79,7 +79,7 @@ namespace Editor.Project
                 }
             }
         }
-
+        public string GCDllPath { get => $@"{Path}{Name}\x64\{GetConfigName(true)}\{Name}.dll"; }
         public string GetConfigName(bool bDll)
         {
             string[] exe = { "Debug", "Release" };
@@ -89,7 +89,7 @@ namespace Editor.Project
         public void AddScene(string sceneName)
         {
             Debug.Assert(!string.IsNullOrEmpty(sceneName.Trim()));
-            _scenes.Add(new Scene(sceneName));
+            _scenes.Add(new Scene(sceneName) { Project = this });
         }
         public void RemoveScene(Scene scene)
         {

@@ -147,7 +147,7 @@ namespace Editor.Utils
                 project.IsBuildAvailable = true;
                 return;
             }
-            // TODO: unload gc dll
+            CLIEngine.Script.UnloadGCDLL();
             OpenVS(project.Path + $"{project.Name}\\" + $"{project.Name}.sln");
             try
             {
@@ -188,12 +188,11 @@ namespace Editor.Utils
                 project.IsBuildAvailable = true;
                 if (Success)
                 {
-                    // TODO var dllPath = project.GCDllPath;
-                    /*if (File.Exists(dllPath))
+                    if (File.Exists(project.GCDllPath))
                     {
-                        *LOAD GC DLL*
-                        project.AvailableScripts = *GET SCRIPT NAMES FROM ENGINE*;
-                    */
+                        CLIEngine.Script.LoadGCDLL(project.GCDllPath);
+                        project.AvailableScripts = CLIEngine.Script.GetScriptNames();
+                    }
                     foreach (var callback in _callbacks) // invoke all callbacks
                     {
                         callback.Invoke();
